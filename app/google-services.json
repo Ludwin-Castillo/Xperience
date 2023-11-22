@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463593578766",
+    "project_id": "xperience-a1d3c",
+    "storage_bucket": "xperience-a1d3c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463593578766:android:886ded57fa811503a8775f",
+        "android_client_info": {
+          "package_name": "com.example.xperience"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAuRZ9pX9mitAx9AlUBMK3S4GEMpRwZpY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

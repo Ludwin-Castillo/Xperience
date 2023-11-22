@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:context=".DetallesActivity">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/detalleTitulo"
+            android:text="Titulo"
+            android:textSize="38dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/black"/>
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:id="@+id/detalleImagen"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            android:src="@drawable/cargarimagen"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Categoria"
+            android:gravity="center"
+            android:id="@+id/detalleCategoria"
+            android:textSize="28sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Sinopsis"
+            android:layout_gravity="center"
+            android:id="@+id/Texto"
+            android:textSize="28sp"
+            android:textColor="@color/lavender"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sinopsis"
+            android:layout_gravity="center"
+            android:id="@+id/detalleSinopsis"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Duracion"
+            android:id="@+id/Texto2"
+            android:textSize="28sp"
+            android:textColor="@color/lavender"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Duracion"
+            android:id="@+id/detaleDuracion"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Hora"
+            android:id="@+id/Texto3"
+            android:textSize="28sp"
+            android:textColor="@color/lavender"/>
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+
+            android:text="Hora"
+            android:id="@+id/detalleHora"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:text="Selecione su asiento"
+            android:id="@+id/seleccionar"
+            android:textSize="18sp"
+            android:layout_marginLeft="130dp"
+            android:drawableEnd="@drawable/baseline_navigate_next_24"
+            android:backgroundTint="@color/lavender"
+            android:layout_marginTop="-69dp"
+            app:cornerRadius="20dp"/>
+    </LinearLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>
