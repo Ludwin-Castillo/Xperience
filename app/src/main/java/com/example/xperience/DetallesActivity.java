@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageException;
 import com.google.firebase.storage.StorageReference;
 
 public class DetallesActivity extends AppCompatActivity {
@@ -55,25 +54,34 @@ public class DetallesActivity extends AppCompatActivity {
             detaHora.setText(bundle.getString("Hora"));
             detaDuracion.setText(bundle.getString("Duracion"));
             key = bundle.getString("key");
-            imageUrl = bundle.getString("Image");
-            Glide.with(this).load(bundle.getString("Imagen")).into(detaImagen);
+            imageUrl = bundle.getString("Imagen");
+            Glide.with(this).load(imageUrl).into(detaImagen);
         }
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Android");
-                FirebaseStorage storage = FirebaseStorage.getInstance();
-
-                StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
-                storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                       reference.child(key).removeValue();
-                        Toast.makeText(DetallesActivity.this,"Pelicula Elimianda", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                        finish();
+                if (imageUrl != null && !imageUrl.isEmpty()) {
+                    FirebaseStorage storage = FirebaseStorage.getInstance();
+                    try {
+                        StorageReference storageReference = storage.getReferenceFromUrl(imageUrl);
+                        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Android");
+                                reference.child(key).removeValue();
+                                Toast.makeText(DetallesActivity.this, "Película Eliminada", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                finish();
+                            }
+                        });
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("DetallesActivity", "Error al obtener la referencia de almacenamiento: " + e.getMessage());
                     }
-                });
+                } else {
+                    Log.e("DetallesActivity", "La URL de la imagen es nula o vacía");
+                }
             }
         });
     }
