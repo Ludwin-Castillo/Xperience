@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/recCard"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="250dp"
     android:layout_margin="10dp"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="36dp"
     app:cardElevation="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/recImage"
-            android:layout_width="120dp"
+            android:layout_width="160dp"
             android:layout_height="160dp"
-            android:layout_marginStart="16dp"
-            android:padding="8dp"
+            android:layout_marginStart="-10dp"
+            android:padding="4dp"
             android:scaleType="centerCrop"
             android:src="@drawable/cargarimagen"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Image" />
 
         <TextView
-            android:id="@+id/recTitulo"
+            android:id="@+id/txttitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_toEndOf="@id/recImage"
             android:text="Titulo"
             android:textColor="@color/darkPurple"
@@ -36,7 +36,18 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/recCategoria"
+            android:id="@+id/recTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/recImage"
+            android:layout_marginTop="22dp"
+            android:text="Titulo"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtcategoria"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/recTitulo"
@@ -45,10 +56,23 @@
             android:layout_toEndOf="@id/recImage"
             android:text="Categoria"
             android:textColor="@color/darkPurple"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/recSinopsis"
+            android:id="@+id/recCategoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recTitulo"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_toEndOf="@id/recImage"
+            android:text="Categoria"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtSinopsis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/recCategoria"
@@ -57,32 +81,74 @@
             android:layout_toEndOf="@id/recImage"
             android:text="Sinopsis"
             android:textColor="@color/darkPurple"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtSinopsis"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/recImage">
+
+            <TextView
+                android:id="@+id/recSinopsis"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                android:text="Sinopsis"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/txthora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recImage"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="8dp"
+            android:text="Hora"
+            android:textColor="@color/darkPurple"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/recHora"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/recSinopsis"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/recImage"
+            android:layout_below="@id/recImage"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="28dp"
             android:text="Hora"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/txtDuracion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recImage"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@id/recHora"
+            android:text="Duracion"
             android:textColor="@color/darkPurple"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/recDuracion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/recSinopsis"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@id/recImage"
+            android:layout_width="69dp"
+            android:layout_height="37dp"
+            android:layout_below="@id/recImage"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="28dp"
+            android:layout_toEndOf="@id/recHora"
             android:text="Duracion"
-            android:textColor="@color/darkPurple"
-            android:textSize="16sp" />
+            android:textColor="@color/black"
+            android:textSize="13sp" />
 
     </RelativeLayout>
-
 </androidx.cardview.widget.CardView>

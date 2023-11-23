@@ -113,7 +113,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(Login.this, "Inicio de sesión con Google exitoso", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(Login.this, Asientos.class);
+                            Intent intent = new Intent(Login.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         } else {

@@ -30,8 +30,9 @@
         android:layout_marginBottom="46dp"
         android:background="@drawable/borde"
         android:drawableEnd="@drawable/flecha"
-        android:onClick="Siguiente"
-        android:text="Let´s Get Started"
+        android:fontFamily="@font/adamina"
+        android:onClick="login"
+        android:text="Empezar ahora!"
         android:textColor="#FFFFFF" />
 
 </RelativeLayout>
