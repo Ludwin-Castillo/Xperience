@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:background="@drawable/fondo2"/>
-    <!-- Apartado de imagen para el logo -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="320dp"
@@ -19,7 +18,6 @@
         android:background="@drawable/xperience"
         android:gravity="center" />
 
-    <!-- Texto descriptivo -->
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
@@ -31,7 +29,6 @@
         android:textColor="@color/black"
         android:textSize="20sp" />
 
-    <!-- CardView para el formulario de inicio de sesión -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"

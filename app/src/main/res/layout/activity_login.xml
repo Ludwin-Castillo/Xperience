@@ -8,7 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="600dp"
         android:background="@drawable/fondoazul"/>
-    <!-- Apartado de imagen para el logo -->
     <ImageView
         android:id="@+id/logoImageView"
         android:layout_width="380dp"
@@ -18,7 +17,6 @@
         android:background="@drawable/cinex"
         android:gravity="center" />
 
-    <!-- Texto descriptivo -->
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
@@ -30,7 +28,6 @@
         android:textColor="@color/white"
         android:textSize="20sp" />
 
-    <!-- CardView para el formulario de inicio de sesión -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview"
         android:layout_width="match_parent"
@@ -47,7 +44,6 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Texto "Iniciar Sesión" dentro de la CardView -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -111,7 +107,6 @@
                 android:backgroundTint="@color/lavender"
                 android:text="Iniciar sesión" />
 
-            <!-- Icono de Google para iniciar sesión con Google -->
             <ImageView
                 android:id="@+id/googlebtn"
                 android:layout_width="60dp"
