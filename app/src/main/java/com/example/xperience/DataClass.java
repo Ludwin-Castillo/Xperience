@@ -8,6 +8,15 @@ public class DataClass {
     private String sinopsis;
     private String hora;
     private String duracion;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public DataClass() {
     }

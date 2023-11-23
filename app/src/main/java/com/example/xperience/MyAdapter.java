@@ -45,6 +45,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.recHora.setText(dataList.get(position).getHora());
         holder.recDuracion.setText(dataList.get(position).getDuracion());
 
+
         holder.recCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +56,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 intent.putExtra("Sinopsis", dataList.get(holder.getAdapterPosition()).getSinopsis());
                 intent.putExtra("Hora", dataList.get(holder.getAdapterPosition()).getHora());
                 intent.putExtra("Duracion", dataList.get(holder.getAdapterPosition()).getDuracion());
+                intent.putExtra("key", dataList.get(holder.getAdapterPosition()).getKey());
 
                 context.startActivity(intent);
             }
