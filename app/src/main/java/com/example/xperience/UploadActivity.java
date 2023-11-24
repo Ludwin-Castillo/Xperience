@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,16 +23,14 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.text.DateFormat;
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -88,44 +87,76 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     public void guardarDato() {
-        if (uri != null) {
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android_imagenes").child(uri.getLastPathSegment());
+        String Titulo = titulo.getText().toString();
+        String Categoria = categoria.getText().toString();
+        String Sinopsis = sinopsis.getText().toString();
+        String Hora = hora.getText().toString();
+        String Duracion = duracion.getText().toString();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(UploadActivity.this);
-            builder.setCancelable(false);
-            builder.setView(R.layout.progress_layout);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        if (TextUtils.isEmpty(Titulo) || TextUtils.isEmpty(Categoria) || TextUtils.isEmpty(Sinopsis) ||
+                TextUtils.isEmpty(Hora) || TextUtils.isEmpty(Duracion) || uri == null) {
+            Toast.makeText(UploadActivity.this, "Completa todos los campos y selecciona una imagen primero", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            imageURL = uri.toString();
+        if (!validarFormatoHora(Hora)) {
+            Toast.makeText(UploadActivity.this, "El formato de la hora no es válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                            // Generar una clave única para cada película
-                            String key = FirebaseDatabase.getInstance().getReference("Android").push().getKey();
+        if (!validarFormatoDuracion(Duracion)) {
+            Toast.makeText(UploadActivity.this, "El formato de la duración no es válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-                            cargarDato(key); // Pasar la clave única como argumento
-                            dialog.dismiss();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            dialog.dismiss();
-                            Toast.makeText(UploadActivity.this, "Error al obtener la URL de la imagen", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
-        } else {
-            Toast.makeText(UploadActivity.this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show();
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android_imagenes").child(uri.getLastPathSegment());
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(UploadActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        storageReference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        imageURL = uri.toString();
+
+                        String key = FirebaseDatabase.getInstance().getReference("Android").push().getKey();
+
+                        cargarDato(key);
+                        dialog.dismiss();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        dialog.dismiss();
+                        Toast.makeText(UploadActivity.this, "Error al obtener la URL de la imagen", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+    }
+
+    private boolean validarFormatoHora(String hora) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+        try {
+            Date date = sdf.parse(hora);
+            return true;
+        } catch (ParseException e) {
+            return false;
         }
     }
 
-    // Actualizar la firma del método para aceptar la clave única como argumento
+    private boolean validarFormatoDuracion(String duracion) {
+
+
+        return true;  // Cambia esto según tu lógica de validación
+    }
+
     public void cargarDato(String key) {
         String Titulo = titulo.getText().toString();
         String Categoria = categoria.getText().toString();
@@ -133,7 +164,6 @@ public class UploadActivity extends AppCompatActivity {
         String Hora = hora.getText().toString();
         String Duracion = duracion.getText().toString();
 
-        // Usa el constructor completo que incluye todos los campos
         DataClass dataClass = new DataClass(Titulo, imageURL, Categoria, Sinopsis, Hora, Duracion, key, "idioma");
 
         FirebaseDatabase.getInstance().getReference("Android").child(key).setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {

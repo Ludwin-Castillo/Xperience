@@ -1,23 +1,22 @@
 package com.example.xperience;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog dialog;
     SearchView searchView;
     MyAdapter adapter;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +76,17 @@ public class MainActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("Android");
 
         setupDatabaseListener();
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+        ImageButton btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cerrarSesion();
+            }
+        });
     }
 
     private void setupDatabaseListener() {
@@ -109,5 +120,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         adapter.searchDataList(searchList);
+    }
+
+
+    private void cerrarSesion() {
+        mAuth.signOut();
+
+
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        finish();
     }
 }

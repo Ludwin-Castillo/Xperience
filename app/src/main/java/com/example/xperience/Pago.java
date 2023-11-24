@@ -1,4 +1,5 @@
 package com.example.xperience;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -30,15 +31,17 @@ public class Pago extends AppCompatActivity {
     public void procederPago(View view) {
         if (validarCampos()) {
             showToast("Campos validados correctamente");
-
+            // Si los campos son válidos, redirigir al activity "Cancelado"
+            Intent intent = new Intent(this, Cancelado.class);
+            startActivity(intent);
         }
     }
 
     private boolean validarCampos() {
         EditText nombreEditText = findViewById(R.id.nombreEditText);
-        EditText tarjetaEditText = findViewById(R.id.codigoTarjetaEditText);
-        EditText fechaVencimientoEditText = findViewById(R.id.fechaVencimientoEditText);
-        EditText cvvEditText = findViewById(R.id.cvvEditText);
+        EditText tarjetaEditText = findViewById(R.id.Codigo);
+        EditText fechaVencimientoEditText = findViewById(R.id.fecha);
+        EditText cvvEditText = findViewById(R.id.cvv);
 
         String nombre = obtenerTexto(nombreEditText);
         String tarjeta = obtenerTexto(tarjetaEditText);

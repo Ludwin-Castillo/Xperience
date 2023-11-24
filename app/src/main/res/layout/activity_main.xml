@@ -10,7 +10,7 @@
 
 
     <TextView
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:paddingStart="20dp"
         android:id="@+id/toolbar2"
         android:textStyle="bold"
@@ -72,14 +72,17 @@
         android:backgroundTint="@color/lavender"
         android:src="@drawable/baseline_add_24" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="65dp"
-        android:layout_height="44dp"
-        android:layout_alignParentTop="true"
+
+    <ImageButton
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="31dp"
-        app:srcCompat="@drawable/pelicula" />
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:background="@color/lightGray"
+        android:onClick="cerrarSesion"
+        android:scaleType="centerCrop"
+        android:src="@drawable/cerrar" />
 
 </RelativeLayout>

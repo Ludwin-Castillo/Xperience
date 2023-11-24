@@ -1,163 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
-    app:cardCornerRadius="20dp"
-    app:cardElevation="8dp">
+    android:background="@color/white"
+    tools:context=".DetallesActivity">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/floatingMenu">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".DetallesActivity">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/detalleTitulo"
-            android:text="Titulo"
-            android:textSize="38dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="12dp"
-            android:textColor="@color/black"/>
-
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:id="@+id/detalleImagen"
-            android:padding="8dp"
-            android:layout_gravity="center"
-            android:src="@drawable/cargarimagen"
-            android:scaleType="fitXY"/>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:text="Language"
-            android:gravity="center"
-            android:id="@+id/detalleLang"
-            android:textSize="28sp"
-            android:textColor="@color/black"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:text="Categoria"
-            android:gravity="center"
-            android:id="@+id/detalleCategoria"
-            android:textSize="28sp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Sinopsis"
-            android:layout_gravity="center"
-            android:id="@+id/Texto"
-            android:textSize="28sp"
-            android:textColor="@color/lavender"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sinopsis"
-            android:layout_gravity="center"
-            android:id="@+id/detalleSinopsis"
-            android:textSize="18sp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Duracion"
-            android:id="@+id/Texto2"
-            android:textSize="28sp"
-            android:textColor="@color/lavender"/>
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Duracion"
-            android:id="@+id/detaleDuracion"
-            android:textSize="18sp"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Hora"
-            android:id="@+id/Texto3"
-            android:textSize="28sp"
-            android:textColor="@color/lavender"/>
-
-        <TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="Hora"
-            android:id="@+id/detalleHora"
-            android:textSize="18sp"
-            android:textColor="@color/black"/>
-
-        <Button
-            android:id="@+id/seleccionar"
-            android:layout_width="200dp"
-            android:layout_height="70dp"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/lavender"
-            android:drawableEnd="@drawable/baseline_navigate_next_24"
-            android:onClick="asi"
-            android:text="Selecione su asiento"
-            android:textSize="18sp"
-            app:cornerRadius="20dp" />
-
-            <com.github.clans.fab.FloatingActionMenu
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="21dp"
-                android:layout_marginTop="-180dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="250dp"
-                app:menu_colorNormal="@color/lavender"
-                app:menu_colorPressed="@color/lavender"
-                app:menu_fab_size="normal"
-                app:menu_icon="@drawable/baseline_format_list_bulleted_24"
-                app:menu_labels_showShadow="true"
-                app:menu_openDirection="up">
+                android:id="@+id/detalleTitulo"
+                android:fontFamily="@font/adamina"
+                android:layout_marginTop="20dp"
+                android:textStyle="bold"
+                android:text="Titulo"
+                android:textSize="30dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/black"/>
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/editButton"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_edit_24"
-                    app:fab_showShadow="true"
-                    app:fab_colorNormal="@color/green"
-                    app:fab_size="mini" />
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="4dp"
+                    android:background="@drawable/borde">
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/deleteButton"
+                    <ImageView
+                        android:id="@+id/detalleImagen"
+                        android:layout_width="240dp"
+                        android:layout_height="260dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cargarimagen" />
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="Language"
+                android:gravity="center"
+                android:id="@+id/detalleLang"
+                android:textSize="28sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:text="Categoria"
+                android:gravity="center"
+                android:id="@+id/tcategoria"
+                android:textSize="28sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/adamina"
+                android:text="Categoria"
+                android:gravity="center"
+                android:id="@+id/detalleCategoria"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/detaleDuracion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/baseline_delete_24"
-                    app:fab_showShadow="true"
-                    app:fab_colorNormal="@color/red"
-                    app:fab_size="mini" />
-            </com.github.clans.fab.FloatingActionMenu>
-    </LinearLayout>
+                    android:padding="10dp"
+                    android:text="Duracion"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:padding="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Año"
+                    android:id="@+id/detalleHora"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"/>
+
+                <Button
+                    android:id="@+id/seleccionar"
+                    android:layout_width="150dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/borde"
+                    android:drawableEnd="@drawable/baseline_navigate_next_24"
+                    android:onClick="asi"
+                    android:text="Selecione su asiento"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:cornerRadius="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/adamina"
+                android:text="Synopsis"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:id="@+id/Texto"
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sinopsis"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:fontFamily="@font/adamina"
+                android:id="@+id/detalleSinopsis"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:alpha=".50"
+                android:textAlignment="textStart"/>
+
+        </LinearLayout>
     </ScrollView>
-</androidx.cardview.widget.CardView>
+
+    <!-- FloatingActionMenu -->
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/floatingMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="21dp"
+        android:layout_marginTop="-180dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="250dp"
+        app:menu_colorNormal="@color/lavender"
+        app:menu_colorPressed="@color/lavender"
+        app:menu_fab_size="normal"
+        app:menu_icon="@drawable/baseline_format_list_bulleted_24"
+        app:menu_labels_showShadow="true"
+        app:menu_openDirection="up">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_edit_24"
+            app:fab_showShadow="true"
+            app:fab_colorNormal="@color/green"
+            app:fab_size="mini" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_delete_24"
+            app:fab_showShadow="true"
+            app:fab_colorNormal="@color/red"
+            app:fab_size="mini" />
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>

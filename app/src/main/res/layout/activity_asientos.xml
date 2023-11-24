@@ -13,9 +13,11 @@
         android:layout_height="44dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        app:srcCompat="@drawable/pelicula"
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="49dp" />
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/pelicula" />
 
     <TextView
         android:id="@+id/text"
@@ -26,20 +28,10 @@
         android:text="SELECCIONE SU ASIENTO"
         android:textColor="@color/purple_700"
         android:textSize="25sp"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="34dp" />
-
-    <TextView
-        android:id="@+id/text3"
-        android:layout_width="252dp"
-        android:layout_height="52dp"
-        android:fontFamily="@font/adamina"
-        android:gravity="center"
-        android:text="!Su información!"
-        android:textColor="@color/purple_700"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="521dp" />
+        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+        app:layout_constraintEnd_toStartOf="@+id/paymentButton"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/paymentButton"
@@ -281,9 +273,10 @@
 
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView4"
         android:layout_width="300dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="320dp"
+        android:layout_marginBottom="260dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -292,16 +285,16 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-            android:layout_width="150dp"
+            android:layout_width="151dp"
             android:layout_height="match_parent"
             android:background="@drawable/bordecito"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="94dp"
+                android:layout_width="64dp"
                 android:layout_height="match_parent"
-                android:padding="5dp"
                 android:fontFamily="@font/arima_madurai_black"
+                android:padding="5dp"
                 android:text="Asiento Ocupado"
                 android:textAlignment="center"
                 android:textSize="14sp" />
@@ -326,9 +319,9 @@
             <TextView
                 android:layout_width="82dp"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/arima_madurai_black"
                 android:padding="5dp"
                 android:text="Asiento Libre"
-                android:fontFamily="@font/arima_madurai_black"
                 android:textAlignment="center"
                 android:textSize="14sp" />
 
@@ -345,6 +338,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
         android:layout_width="302dp"
         android:layout_height="232dp"
         android:layout_marginBottom="16dp"
@@ -397,23 +391,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/arima_madurai_black"
-            android:text="  Su asiento es: "
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/asientosOcupadosTextView" />
 
-        <TextView
-            android:id="@+id/textoAsientoSeleccionado2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/arima_madurai_black"
-            android:text="  Su asiento es: "
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/asientosOcupadosTextView" />
 
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
