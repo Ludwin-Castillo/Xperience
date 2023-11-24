@@ -1,7 +1,5 @@
 package com.example.xperience;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -41,8 +39,6 @@ public class UpdateActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageReference storageReference;
 
-    private static final int REQUEST_CODE_IMAGE_PICKER = 123;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,23 +54,20 @@ public class UpdateActivity extends AppCompatActivity {
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-                        if (result.getResultCode() == Activity.RESULT_OK) {
-                            Intent data = result.getData();
-                            uri = data.getData();
-                            editarI.setImageURI(uri);
-                        } else {
-                            Toast.makeText(UpdateActivity.this, "No se ha seleccionado una imagen", Toast.LENGTH_SHORT).show();
-                        }
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        Intent data = result.getData();
+                        uri = data.getData();
+                        editarI.setImageURI(uri);
+                    } else {
+                        Toast.makeText(UpdateActivity.this, "No se ha seleccionado una imagen", Toast.LENGTH_SHORT).show();
                     }
                 }
         );
 
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null){
-            Glide.with(UpdateActivity.this).load(bundle.getString("Image")).into((editarI));
+        if (bundle != null) {
+            Glide.with(UpdateActivity.this).load(bundle.getString("Image")).into(editarI);
             editarT.setText(bundle.getString("Titulo"));
             editarC.setText(bundle.getString("Categoria"));
             editarS.setText(bundle.getString("Sinopsis"));
@@ -88,62 +81,40 @@ public class UpdateActivity extends AppCompatActivity {
         if (key != null) {
             databaseReference = databaseReference.child(key);
         } else {
-            // Manejar el caso en el que key es nulo
             return;
         }
 
-        editarI.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPicker = new Intent(Intent.ACTION_PICK);
-                photoPicker.setType("image/*");
-                activityResultLauncher.launch(photoPicker);
-            }
+        editarI.setOnClickListener(view -> {
+            Intent photoPicker = new Intent(Intent.ACTION_PICK);
+            photoPicker.setType("image/*");
+            activityResultLauncher.launch(photoPicker);
         });
 
-
-
-        editarP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveData();
-                Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
+        editarP.setOnClickListener(view -> {
+            saveData();
+            Intent intent = new Intent(UpdateActivity.this, MainActivity.class);
+            startActivity(intent);
         });
     }
 
     private void saveData() {
-        if (uri != null) {
-            storageReference = FirebaseStorage.getInstance().getReference().child("Android").child(uri.getLastPathSegment());
+        storageReference = FirebaseStorage.getInstance().getReference().child("Android").child(uri.getLastPathSegment());
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
-            builder.setCancelable(false);
-            builder.setView(R.layout.progress_layout);
-            AlertDialog dialog = builder.create();
-            dialog.show();
+        AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
+        builder.setCancelable(false);
+        builder.setView(R.layout.progress_layout);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
-            storageReference.putFile(uri)
-                    .addOnSuccessListener(taskSnapshot -> {
-                        storageReference.getDownloadUrl()
-                                .addOnSuccessListener(uri -> {
-                                    imagenUrl = uri.toString();
-                                    updateData();
-                                    dialog.dismiss();
-                                })
-                                .addOnFailureListener(e -> {
-                                    // Manejar el caso en que la obtención de la URL de descarga falla
-                                    dialog.dismiss();
-                                });
-                    })
-                    .addOnFailureListener(e -> {
-                        // Manejar el caso en que la carga del archivo falla
-                        dialog.dismiss();
-                    });
-        } else {
-            // Manejar el caso en que uri es nulo
-            Toast.makeText(UpdateActivity.this, "No se ha seleccionado una imagen", Toast.LENGTH_SHORT).show();
-        }
+        storageReference.putFile(uri).addOnSuccessListener(taskSnapshot ->
+                storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                    imagenUrl = uri.toString();
+                    updateData();
+                    dialog.dismiss();
+                })).addOnFailureListener(e -> {
+            dialog.dismiss();
+            Toast.makeText(UpdateActivity.this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show();
+        });
     }
 
     private void updateData() {
@@ -153,17 +124,22 @@ public class UpdateActivity extends AppCompatActivity {
         hora = editarH.getText().toString().trim();
         duracion = editarD.getText().toString().trim();
 
-        DataClass dataClass = new DataClass(titulo, categoria, sinopsis, hora, duracion, imagenUrl);
+        DataClass dataClass = new DataClass(titulo, categoria, sinopsis, hora, duracion);
 
-        databaseReference.setValue(dataClass)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
-                        reference.delete();
-                        Toast.makeText(UpdateActivity.this, "Pelicula Editada", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                })
-                .addOnFailureListener(e -> Toast.makeText(UpdateActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show());
+        databaseReference.setValue(dataClass).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(UpdateActivity.this, "Pelicula Editada", Toast.LENGTH_SHORT).show();
+                deleteOldImage();
+                finish();
+            } else {
+                Toast.makeText(UpdateActivity.this, "Error al editar la película", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteOldImage() {
+        StorageReference reference = FirebaseStorage.getInstance().getReferenceFromUrl(oldImageURL);
+        reference.delete().addOnFailureListener(e ->
+                Toast.makeText(UpdateActivity.this, "Error al eliminar la imagen antigua", Toast.LENGTH_SHORT).show());
     }
 }
