@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +15,6 @@
         android:theme="@style/Theme.Xperience"
         tools:targetApi="31">
         <activity
-            android:name=".Carga"
-            android:exported="false" />
-        <activity
             android:name=".UpdateActivity"
             android:exported="false" />
         <activity
@@ -28,7 +24,7 @@
             android:name=".Registrarse"
             android:exported="false" />
         <activity
-            android:name=".UploadActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Login"
@@ -40,10 +36,10 @@
             android:name=".DetallesActivity"
             android:exported="false" />
         <activity
-            android:name=".Inicio"
+            android:name=".UploadActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Inicio"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

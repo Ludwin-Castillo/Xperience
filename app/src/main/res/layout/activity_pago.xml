@@ -12,27 +12,17 @@
     <TextView
         android:layout_width="match_parent"
         android:textAlignment="center"
+        android:padding="20dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/bungee"
+        android:fontFamily="@font/adamina"
         android:textSize="25dp"
         android:text="Pago Tu Boleta">
     </TextView>
 
     <TextView
-        android:id="@+id/txtprecio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/alata"
-        android:text="Precio total"
-        android:textColor="@color/lavender"
-        android:textSize="25dp">
-
-    </TextView>
-
-
-    <TextView
         android:id="@+id/precioTextView2"
         android:layout_width="match_parent"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:fontFamily="@font/adamina"
         android:textSize="25dp"
@@ -41,8 +31,10 @@
 
     <TextView
         android:layout_width="match_parent"
+        android:textAlignment="center"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/alata"
+        android:fontFamily="@font/adamina"
+        android:padding="10dp"
         android:textSize="15dp"
         android:text="Tu forma de pago">
     </TextView>
@@ -50,16 +42,11 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/credito"
-        android:layout_gravity="center"
-        android:elevation="5dp"/>
+        android:background="@drawable/xperience"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
         android:layout_height="370dp"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
 
@@ -67,78 +54,58 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center"
-            android:gravity=""
             android:padding="16dp">
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre del titular:"
-                android:padding="10dp"
-                android:paddingStart="1dp"/>
+                android:text="Nombre:" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:id="@+id/nombreEditText"
-                android:background="@drawable/border"
-                android:hint="    Kevin Leiva"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/nombreEditText" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pin de la targeta:"
-                android:padding="10dp"
-                android:paddingStart="1dp"/>
+                android:layout_marginTop="20dp"
+                android:text="Código de Tarjeta:" />
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:id="@+id/Codigo"
-                android:background="@drawable/border"
-                android:hint="    **** **** **** ****"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/codigoTarjetaEditText" />
 
             <TextView
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha de vencimiento:"
-                android:padding="10dp"
-                android:paddingStart="1dp"/>
+                android:text="Fecha de Vencimiento:" />
 
             <EditText
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:id="@+id/fecha"
-                android:background="@drawable/border"
-                android:hint="    mes / año"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:paddingStart="1dp"
-                android:text="CVV:"
-                android:layout_marginLeft="160dp"
-                android:layout_marginTop="-85dp"/>
-
-            <EditText
-                android:layout_width="150dp"
-                android:layout_height="45dp"
-                android:id="@+id/Cv"
-                android:background="@drawable/border"
-                android:hint="    ***"
-                android:layout_marginLeft="160dp"/>
-
-            <Button
-                android:id="@+id/ppago"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="Proceder Pago"
-                android:backgroundTint="@color/lavender"
-                android:layout_marginTop="30dp" />
+                android:layout_height="wrap_content"
+                android:id="@+id/fechaVencimientoEditText" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CVV:" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/cvvEditText" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <Button
+        android:id="@+id/ppago"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proceder Pago"
+        android:backgroundTint="@color/black"
+        android:layout_marginTop="10dp"/>
 
 </LinearLayout>

@@ -116,4 +116,8 @@ public class DetallesActivity extends AppCompatActivity {
     private void mostrarMensaje(String mensaje) {
         Toast.makeText(DetallesActivity.this, mensaje, Toast.LENGTH_SHORT).show();
     }
+    public void asi(View view) {
+        Intent intent = new Intent(this, Asientos.class);
+        startActivity(intent);
+    }
 }
