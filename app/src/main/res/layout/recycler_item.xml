@@ -94,7 +94,7 @@
 
             <TextView
                 android:id="@+id/recSinopsis"
-                android:layout_width="190dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:text="Sinopsis"
                 android:textColor="@color/black"
@@ -127,7 +127,7 @@
 
         <TextView
             android:id="@+id/txtDuracion"
-            android:layout_width="wrap_content"
+            android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/recImage"
             android:layout_marginStart="30dp"
@@ -136,12 +136,12 @@
             android:text="Duracion"
             android:textColor="@color/darkPurple"
             android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/recDuracion"
-            android:layout_width="69dp"
-            android:layout_height="37dp"
+            android:layout_width="77dp"
+            android:layout_height="30dp"
             android:layout_below="@id/recImage"
             android:layout_marginStart="30dp"
             android:layout_marginTop="28dp"

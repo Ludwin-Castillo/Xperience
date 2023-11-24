@@ -10,6 +10,19 @@ public class DataClass {
     private String duracion;
     private String key;
 
+    private String Lang;
+
+    public DataClass(String titulo, String categoria, String sinopsis, String hora, String duracion, String imagenUrl) {
+    }
+
+    public String getLang() {
+        return Lang;
+    }
+
+    public void setLang(String lang) {
+        Lang = lang;
+    }
+
     public String getKey() {
         return key;
     }
@@ -45,12 +58,13 @@ public class DataClass {
         return duracion;
     }
 
-    public DataClass(String titulo, String categoria, String sinopsis, String hora, String duracion, String imageURL) {
+    public DataClass(String titulo, String categoria, String sinopsis, String hora, String duracion) {
         this.titulo = titulo;
         this.categoria = categoria;
         this.sinopsis = sinopsis;
         this.hora = hora;
         this.duracion = duracion;
-        this.image = imageURL;
     }
+
+
 }
