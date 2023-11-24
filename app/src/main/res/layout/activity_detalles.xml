@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightGray"
+    android:background="@color/white"
     tools:context=".DetallesActivity">
 
     <ScrollView
@@ -49,8 +49,8 @@
 
                     <ImageView
                         android:id="@+id/detalleImagen"
-                        android:layout_width="250dp"
-                        android:layout_height="280dp"
+                        android:layout_width="240dp"
+                        android:layout_height="260dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/cargarimagen" />
 
@@ -65,6 +65,16 @@
                 android:text="Language"
                 android:gravity="center"
                 android:id="@+id/detalleLang"
+                android:textSize="28sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-30dp"
+                android:text="Categoria"
+                android:gravity="center"
+                android:id="@+id/tcategoria"
                 android:textSize="28sp"
                 android:textColor="@color/black"/>
 

@@ -19,7 +19,7 @@
         android:paddingStart="20dp"
         android:text="Cargando..."
         android:textSize="18sp"
-        android:textColor="@color/lavender"
+        android:textColor="@color/black"
         android:gravity="start|center_vertical"/>
 
 
