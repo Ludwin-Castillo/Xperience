@@ -22,7 +22,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -85,7 +88,6 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     public void guardarDato() {
-
         if (uri != null) {
             StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Android_imagenes").child(uri.getLastPathSegment());
 
@@ -102,7 +104,11 @@ public class UploadActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Uri uri) {
                             imageURL = uri.toString();
-                            cargarDato();
+
+                            // Generar una clave única para cada película
+                            String key = FirebaseDatabase.getInstance().getReference("Android").push().getKey();
+
+                            cargarDato(key); // Pasar la clave única como argumento
                             dialog.dismiss();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -113,32 +119,24 @@ public class UploadActivity extends AppCompatActivity {
                         }
                     });
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    dialog.dismiss();
-                    Toast.makeText(UploadActivity.this, "Error al cargar la imagen", Toast.LENGTH_SHORT).show();
-                }
             });
-
         } else {
             Toast.makeText(UploadActivity.this, "Selecciona una imagen primero", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void cargarDato() {
-
+    // Actualizar la firma del método para aceptar la clave única como argumento
+    public void cargarDato(String key) {
         String Titulo = titulo.getText().toString();
         String Categoria = categoria.getText().toString();
-        String Synopsis = sinopsis.getText().toString();
+        String Sinopsis = sinopsis.getText().toString();
         String Hora = hora.getText().toString();
         String Duracion = duracion.getText().toString();
 
-        DataClass dataClass = new DataClass(Titulo, Categoria, Synopsis, Hora, Duracion);
+        // Usa el constructor completo que incluye todos los campos
+        DataClass dataClass = new DataClass(Titulo, imageURL, Categoria, Sinopsis, Hora, Duracion, key, "idioma");
 
-        String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-        FirebaseDatabase.getInstance().getReference("Android").child(currentDate).setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
+        FirebaseDatabase.getInstance().getReference("Android").child(key).setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

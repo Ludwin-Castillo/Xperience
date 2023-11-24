@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -85,32 +84,18 @@ public class MainActivity extends AppCompatActivity {
         eventListener = databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    Log.d("MainActivity", "onDataChange: datos actualizados");
-                    dataList.clear();
-                    for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
-                        DataClass dataClass = itemSnapshot.getValue(DataClass.class);
-                        if (dataClass != null) {
-                            dataClass.setKey(itemSnapshot.getKey());
-                            dataList.add(dataClass);
-                            adapter.notifyDataSetChanged();
-                            Log.d("MainActivity", "onDataChange: notifyDataSetChanged llamado");
-                        } else {
-                            Log.e("MainActivity", "dataClass is null for key: " + itemSnapshot.getKey());
-                        }
-                    }
-                    dialog.dismiss();
-                    adapter.notifyDataSetChanged();
-                } catch (Exception e) {
-                    Log.e("MainActivity", "Error in onDataChange", e);
-                    dialog.dismiss();
+                dataList.clear();
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                    DataClass dataClass = itemSnapshot.getValue(DataClass.class);
+                    dataClass.setKey(itemSnapshot.getKey());
+                    dataList.add(dataClass);
                 }
+                dialog.dismiss();
+                adapter.notifyDataSetChanged();
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("MainActivity", "Database error: " + error.getMessage());
                 dialog.dismiss();
             }
         });
